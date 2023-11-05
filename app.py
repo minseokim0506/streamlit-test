@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-news = pd.read_csv("news_labeled.csv",encoding = "Ansi")
+news = pd.read_csv("news_labeled.csv",encoding = "UTF-8")
 sentences = pd.read_excel("sentences_labeled_v3.xlsx")
 
 news_data = []
