@@ -3,6 +3,7 @@ import pandas as pd
 import openpyxl
 news = pd.read_csv("news_labeled.csv",encoding = "UTF-8")
 sentences = pd.read_excel("sentences_labeled_v3.xlsx")
+backgroundColor = "#F0F0F0"
 
 news_data = []
 for i in range(len(news)):
