@@ -8,7 +8,11 @@ news_data = []
 for i in range(len(news)):
     news_data.append(f"News {i + 1}")
 
-st.title("기사 첨삭 서비스")
+st.title("보도 준칙 기반 기사 첨삭 서비스 준킴이")
+
+if st.button("준킴이가 궁금하신가요?"):
+     st.text("🔍 준킴이는 '한국 기자 협회'에서 제시한 분야별 보도 준칙에 의거해 작성된 기사의 적합성을 판단합니다.")
+     st.text("🔍 준킴이는 기사의 문장을 점수화해 특정 점수 이하일 경우 점수 산정 근거와 표현에 대한 피드백을 제공합니다.")
 
 # 뉴스 선택 드롭다운 목록
 selected_news = st.selectbox("뉴스 선택", news_data)
