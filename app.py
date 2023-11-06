@@ -3,7 +3,12 @@ import pandas as pd
 import openpyxl
 news = pd.read_csv("news_labeled.csv",encoding = "UTF-8")
 sentences = pd.read_excel("sentences_labeled_v3.xlsx")
-backgroundColor = "#F0F0F0"
+custom_css = """
+body {
+    background-color: lightgray;
+}
+"""
+st.write('<style>{}</style>'.format(custom_css), unsafe_allow_html=True)
 
 news_data = []
 for i in range(len(news)):
@@ -18,28 +23,29 @@ if st.button("준킴이가 궁금하신가요?"):
 # 뉴스 선택 드롭다운 목록
 selected_news = st.selectbox("뉴스 선택", news_data)
 
-if selected_news == "News 1":
-    # "News 1"이 선택된 경우에만 아래 코드가 실행됩니다.
-    # 텍스트 입력 상자 생성
-    article = st.text_area("기사를 입력하세요", value=news[news["news_id"]==1]["main_text"].values)
+# 선택한 뉴스 번호 추출
+selected_news_number = int(selected_news.split()[1])
 
-news1 = sentences[sentences["news_id"]==1]
-for i in range(len(news1)):
-    print(news1["sentence"][i])
+# 선택한 뉴스 번호에 해당하는 데이터 추출
+selected_news_data = news[news["news_id"] == selected_news_number]
+selected_sentences_data = sentences[sentences["news_id"] == selected_news_number]
+
+# "News 1"이 선택된 경우에만 아래 코드가 실행됩니다.
+# 텍스트 입력 상자 생성
+article = st.text_area("기사를 입력하세요", value=selected_news_data["main_text"].values[0])
 
 # 기사 첨삭 결과 표시
 if st.button("첨삭하기"):
-        st.subheader("첨삭된 기사")
-        for i in range(len(news1)):
-              data = news1["sentence"][i]
-              widget_key_1 = f"text_area_{i}_1"
-              widget_key_2 = f"text_area_{i}_2"
-              if (news1["score_1"][i]+news1["score_2"][i]+news1["score_3"][i]+news1["score_4"][i]<=7):
-                   st.write(f'<span style="color:red">{data}</span>', unsafe_allow_html=True)
-                   st.text_area("이점을 참고해보세요", value = news1["news_expert_opinion"][i],key=widget_key_1)
-                   st.text_area("이렇게 바꿔보세요", value =news1["alternative"][i], key =widget_key_2)
-              else:
-                   st.write(news1["sentence"][i])
+    st.text_area("전체적인 기사의 피드백입니다", value=selected_sentences_data["news_expert_opinion"].values[0])
+    st.subheader("첨삭된 기사")
+    for i in range(len(selected_sentences_data)):
+        data = selected_sentences_data["sentence"].values[i]
+        widget_key = f"text_area_{i}_2"
+        if (selected_sentences_data["score_1"].values[i] + selected_sentences_data["score_2"].values[i] +
+            selected_sentences_data["score_3"].values[i] + selected_sentences_data["score_4"].values[i] <= 9):
+            st.write(f'<span style="color:red">{data}</span>', unsafe_allow_html=True)
+            st.text_area("이렇게 바꿔보세요", value=selected_sentences_data["alternative"].values[i], key=widget_key)
+        else:
+            st.write(data)
     
-
 
