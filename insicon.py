@@ -18,8 +18,7 @@ def translate_text(text, target_language='en'):
     return translation
 
 # API 키 설정 (실제 키로 대체해야 함)
-api_key = "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"
-openai.api_key = os.environ.get(api_key)
+openai.api_key = os.environ.get("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")
 
 st.set_page_config(
     page_title="너만의 플레이리스트 너플리",
