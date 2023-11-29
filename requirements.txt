@@ -8,4 +8,4 @@ pandas
 kiwipiepy
 numpy
 os
-dotenv == 0.21.1
+dotenv==0.21.1
