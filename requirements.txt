@@ -1,3 +1,9 @@
+openai==0.28.1
 streamlit
+streamlit_chat
+Pillow==9.4.0
+requests
+translate
 pandas
-openpyxl==3.1.2
+kiwipiepy
+numpy
