@@ -9,7 +9,6 @@ import re
 import pandas as pd
 from kiwipiepy import Kiwi
 import numpy as np
-import os
 #from dotenv import load_dotenv
 #import plotly.figure_factory as ff
 
