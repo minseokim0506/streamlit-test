@@ -10,16 +10,16 @@ import pandas as pd
 from kiwipiepy import Kiwi
 import numpy as np
 import os
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 #import plotly.figure_factory as ff
 
 def translate_text(text, target_language='en'):
     translator = Translator(to_lang=target_language)
     translation = translator.translate(text)
     return translation
-load_dotenv()
+#load_dotenv()
 # API 키 가져오기
-api_key = os.getenv("OPENAI_API_KEY")
+api_key = st.secrets["api"]["key"]
 # API 키 설정 (실제 키로 대체해야 함)
 openai.api_key = api_key
 
