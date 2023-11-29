@@ -17,7 +17,7 @@ def translate_text(text, target_language='en'):
     return translation
 
 # API 키 설정 (실제 키로 대체해야 함)
-api_key = "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"
+api_key = "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"
 openai.api_key = api_key
 
 st.set_page_config(
