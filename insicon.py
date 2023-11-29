@@ -9,6 +9,7 @@ import re
 import pandas as pd
 from kiwipiepy import Kiwi
 import numpy as np
+import os
 #import plotly.figure_factory as ff
 
 def translate_text(text, target_language='en'):
@@ -17,8 +18,8 @@ def translate_text(text, target_language='en'):
     return translation
 
 # API 키 설정 (실제 키로 대체해야 함)
-api_key = "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"
-openai.api_key = api_key
+api_key = "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"
+openai.api_key = os.environ.get(api_key)
 
 st.set_page_config(
     page_title="너만의 플레이리스트 너플리",
