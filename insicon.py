@@ -1,7 +1,7 @@
 import openai
 import streamlit as st
 from streamlit_chat import message
-import os
+#import os
 from PIL import Image
 import requests
 from translate import Translator
